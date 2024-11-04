@@ -28,7 +28,7 @@ jobs:
       run: go test -v ./...
 
     - name: ls
-      run: ls
+      run: ls change-case-in-dir
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
