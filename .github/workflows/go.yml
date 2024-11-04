@@ -21,16 +21,22 @@ jobs:
       with:
         go-version: '1.23'
 
-    - name: Build
-      run: go build -v ./...
-
-    - name: Test
-      run: go test -v ./...
-
-    - name: ls
-      run: ls change-case-in-dir
+    - name: Build windows 64
+      run: GOOS=windows GOARCH=amd64 go build -o build/app-amd64.exe main.go
+    - name: Build windows 32
+      run: GOOS=windows GOARCH=386 go build -o build/app-386.exe main.go
+    - name: Build macos 64
+      run: GOOS=darwin GOARCH=amd64 go build -o build/app-amd64-darwin main.go
+    - name: Build macos 32
+      run: GOOS=darwin GOARCH=386 go build -o build/app-386-darwin main.go
+    - name: Build macos arm 64
+      run: GOOS=darwin GOARCH=arm64 go build -o build/app-arm64-darwin main.go
+    - name: Build linux 64
+      run: GOOS=linux GOARCH=amd64 go build -o build/app-amd64-linux main.go
+    - name: Build linux 32
+      run: GOOS=linux GOARCH=386 go build -o build/app-386-linux main.go
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
       with:
-        path: ./...
+        path: build/
