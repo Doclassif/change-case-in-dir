@@ -27,6 +27,9 @@ jobs:
     - name: Test
       run: go test -v ./...
 
+    - name: ls
+      run: ls
+
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
       with:
